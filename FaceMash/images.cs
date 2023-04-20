@@ -23,7 +23,6 @@ namespace FaceMash
         private string baseFillerPath = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\filler\\filler";
         private string baseSambaPath = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\samba\\samba";
 
-        private bool picChange = true;
         readonly Picture leftPic = new();
         readonly Picture rightPic = new();
 
@@ -82,16 +81,6 @@ namespace FaceMash
         };
 
         /// <summary>
-        /// Sets a path for an image.
-        /// </summary>
-        /// <returns>String with a path for a picture box.</returns>
-        public string ShowPic()
-        {
-            string path = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\filler\\filler014.png";
-            return path;
-        }
-
-        /// <summary>
         /// It will choose a pics
         /// </summary>
         public void ShufflePics()
@@ -116,6 +105,11 @@ namespace FaceMash
             return picturePath;
         }
 
+        /// <summary>
+        /// Checks if Samba is present (boolean) on the left side picture.
+        /// It can be done better. (For later refactoring)
+        /// </summary>
+        /// <returns>String with response for the label.</returns>
         public string GuessSambaLeft()
         {
             string response = "";
@@ -129,6 +123,11 @@ namespace FaceMash
             }
             return response;
         }
+        /// <summary>
+        /// Checks if Samba is present (boolean) on the rigth side picture.
+        /// (For later refactoring)
+        /// </summary>
+        /// <returns>String with reponse for the label.</returns>
         public string GuessSambaRight()
         {
             string response = "";
@@ -143,30 +142,15 @@ namespace FaceMash
             return response;
         }
 
-        public void TestImages()
-        {
-            if (picChange)
-            {
-                leftImagePath = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\filler\\filler012.png";
-                rightImagePath = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\filler\\filler013.png";
-                picChange = false;
-            }
-            else
-            {
-                leftImagePath = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\filler\\filler011.png";
-                rightImagePath = "C:\\Users\\Frosty\\OneDrive\\Pictures\\facemash\\filler\\filler010.png";
-                picChange = true;
-            }
-
-
-
-            leftPic.setPath(leftImagePath);
-            rightPic.setPath(rightImagePath);
-        }
-
+        /// <summary>
+        /// Rolls a virtual dice and will place Sambuchadnezara on left or right side.
+        /// </summary>
+        /// <param name="left">It represents the left picture.</param>
+        /// <param name="right">It represents the right picture.</param>
         private void PlaceSamba(Picture left, Picture right)
         {
-            dice = rnd.Next(10);
+            // Definitely should look how random these random numbers are.
+            dice = rnd.Next(10); 
             if(dice % 2 == 0)
             {
                 left.setSamba(true);
@@ -179,11 +163,19 @@ namespace FaceMash
             }
         }
 
+        /// <summary>
+        /// Path for image on the left.
+        /// </summary>
+        /// <returns>String with a path to an image.</returns>
         public string getLeftImagePath()
         {
             return leftPic.getPath();
         }
 
+        /// <summary>
+        /// Path for an image on the right.
+        /// </summary>
+        /// <returns>String with a path to an image.</returns>
         public string getRightImagePath()
         {
             return rightPic.getPath();
